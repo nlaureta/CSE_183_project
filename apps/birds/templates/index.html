@@ -1,0 +1,62 @@
+[[extend 'layout.html']]
+
+<div class="section">
+   <table class="table is-fullwidth is-striped is-">
+      <thead>
+         <tr>
+            <th title="bird">Bird Species</th>
+            <th title="weight">Weight</th>
+            <th title="diet">Diet</th>
+            <th title="habitat">Habitat</th>
+         </tr>
+      </thead>
+
+      <tbody>
+         <tr>
+         </tr>
+         [[for item in data:]]
+         <tr>
+            <th class="has-text-weight-normal">[[=item['bird']]]</th>
+            <th class="has-text-weight-normal">[[=item['weight']]]</th>
+            <th class="has-text-weight-normal">[[=item['diet']]]</th>
+            <th class="has-text-weight-normal">[[=item['habitat']]]</th>
+         </tr>
+         [[pass]]
+      </tbody>
+
+      <body onload="main()">
+         <canvas id="webgl" width="400" height="400">
+         Please use a browser that supports "canvas"
+         </canvas>
+ 
+         <p>
+         <button type="button" id="clear">Clear Canvas</button>
+         <p>
+ 
+         <p>
+         <button type="button" id="pointButton">Squares</button>
+         <button type="button" id="triglButton">Triangles</button>
+         <button type="button" id="circlButton">Circles</button>
+         <p>
+ 
+         <p>
+         Red<input type="range" min="0" max="100" value="100" class="slider" id="redSlide"/>
+         Green<input type="range" min="0" max="100" value="100" class="slider" id="greSlide"/>
+         Blue<input type="range" min="0" max="100" value="100" class="slider" id="bluSlide"/> 
+         <p>
+         
+         <p>
+         Shape Size:<input type="range" min="5" max="200" value="5" class="slider" id="sizeSlide"/> 
+         (Circle) Segment Count:<input type="range" min="3" max="30" value="3" class="slider" id="segSlide"/>
+         <p>
+         
+         <script src="js/lib/webgl-utils.js"></script>
+         <script src="js/lib/webgl-debug.js"></script>
+         <script src="js/lib/cuon-utils.js"></script>
+         <script src="js/Triangle.js"></script>
+         <script src="js/Circle.js"></script>
+         <script src="js/Point.js"></script>
+         <script src="js/asg1.js"></script>
+      </body>
+   </table>
+</div>
