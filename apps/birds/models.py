@@ -20,4 +20,9 @@ def get_time():
 #
 ## always commit your models to avoid problems later
 
+db.define_table(
+    'words',
+    Field('word', requires=IS_NOT_EMPTY()),
+)
+
 db.commit()
