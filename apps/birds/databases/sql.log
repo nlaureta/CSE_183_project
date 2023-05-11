@@ -19,3 +19,9 @@ CREATE TABLE "auth_user_tag_groups"(
     "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
 );
 success!
+timestamp: 2023-05-10T18:52:32.991457
+CREATE TABLE "words"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "word" CHAR(512)
+);
+success!
