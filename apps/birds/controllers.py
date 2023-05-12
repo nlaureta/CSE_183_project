@@ -3,6 +3,7 @@ from .common import db, session, T, cache, auth, logger
 from .models import get_user_email
 from .settings import APP_FOLDER
 import os, json
+import random
 
 @action('/birds', method=['GET'])
 @action.uses('index.html', auth)
@@ -19,4 +20,9 @@ def mainMenu():
 def index():
     return dict()
 
-
+@action("words")
+@action.uses(db)
+def words():
+    randid = random.randrange(1, 10)
+    rows = db(db.words.id == randid).select()
+    return dict(rows=rows)
