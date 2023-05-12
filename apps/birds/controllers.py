@@ -21,7 +21,7 @@ def index():
     return dict()
 
 @action("words")
-@action.uses(db)
+@action.uses(db, 'wordTest.html')
 def words():
     randid = random.randrange(1, 10)
     rows = db(db.words.id == randid).select()
