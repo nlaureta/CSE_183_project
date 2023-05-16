@@ -93,6 +93,8 @@ function addActionForHtmlUI(){
   document.getElementById('sizeSlide').addEventListener('mouseup', function() {g_selectedSize = this.value;});
 
   document.getElementById('segSlide').addEventListener('mouseup', function() {g_selectedSeg = this.value;});
+  // Save Canvas Button Event
+  document.getElementById('saveCanvas').onclick = function() { saveCanvas();};
 }
 
 function main() {
@@ -159,3 +161,21 @@ function renderAllShapes(){
     g_shapesList[i].render();
   }
 }
+
+function saveCanvas() {
+    renderAllShapes();
+    // Get the canvas element
+    const canvas = document.getElementById("webgl");
+
+    // Create a data URI of the canvas content
+    const dataURI = canvas.toDataURL();
+
+    // Create a link element
+    const link = document.createElement("a");
+    link.href = dataURI;
+    link.download = "canvas.png";
+
+    // Trigger a click event on the link to start the download
+    link.click();
+}
+
