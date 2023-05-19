@@ -26,3 +26,8 @@ def words():
     randid = random.randrange(1, 10)
     rows = db(db.words.id == randid).select()
     return dict(rows=rows)
+
+@action("homepage")
+@action.uses(db, 'homepage.html')
+def homepage():
+    return dict()
