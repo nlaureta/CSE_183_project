@@ -2,54 +2,51 @@
 
 <div class="section">
    <table class="table is-fullwidth is-striped is-">
-      <thead>
-         <tr>
-           
-         </tr>
-      </thead>
 
-      <tbody>
-         <tr>
-         </tr>
-    
-         <tr>
-         
-         </tr>
-   
-      </tbody>
+      <div class="columns">
+         <div class="column">
 
-      <body onload="main()">
-         <canvas id="webgl" width="400" height="400">
-            Please use a browser that supports "canvas"
-         </canvas>
-      
-         <p>
-            <button type="button" id="clear">Clear Canvas</button>
-         </p>
-      
-         <p>
-            <button type="button" id="pointButton">Squares</button>
-            <button type="button" id="triglButton">Triangles</button>
-            <button type="button" id="circlButton">Circles</button>
-         </p>
-      
-         <p>
-            Red<input type="range" min="0" max="100" value="100" class="slider" id="redSlide" />
-            Green<input type="range" min="0" max="100" value="100" class="slider" id="greSlide" />
-            Blue<input type="range" min="0" max="100" value="100" class="slider" id="bluSlide" />
-         </p>
-      
-         <p>
-            Shape Size:
-            <input type="range" min="5" max="200" value="5" class="slider" id="sizeSlide" />
-            (Circle) Segment Count:
-            <input type="range" min="3" max="30" value="3" class="slider" id="segSlide" />
-         </p>
-      
-         <p>
-            <button type="button" id="saveCanvas">Save Canvas</button>
-         </p>
-         
+            <body onload="main()">
+               <canvas id="webgl" width="400" height="400">
+                  Please use a browser that supports "canvas"
+               </canvas>
+
+               <p>
+                  <button type="button" id="clear">Clear Canvas</button>
+               </p>
+
+               <p>
+                  <button type="button" id="pointButton">Squares</button>
+                  <button type="button" id="triglButton">Triangles</button>
+                  <button type="button" id="circlButton">Circles</button>
+               </p>
+
+               <p>
+                  Red<input type="range" min="0" max="100" value="100" class="slider" id="redSlide" />
+                  Green<input type="range" min="0" max="100" value="100" class="slider" id="greSlide" />
+                  Blue<input type="range" min="0" max="100" value="100" class="slider" id="bluSlide" />
+               </p>
+
+               <p>
+                  Shape Size:
+                  <input type="range" min="5" max="200" value="5" class="slider" id="sizeSlide" />
+                  (Circle) Segment Count:
+                  <input type="range" min="3" max="30" value="3" class="slider" id="segSlide" />
+               </p>
+
+               <p>
+                  <button type="button" id="saveCanvas">Save Canvas</button>
+               </p>
+
+         </div>
+         <div class="column">
+            <h1 class = "title">Your Word:</h1>
+            [[for item in rows:]]
+               [[=item.word]]
+            [[pass]]
+         </div>
+
+
          <script src="js/lib/webgl-utils.js"></script>
          <script src="js/lib/webgl-debug.js"></script>
          <script src="js/lib/cuon-utils.js"></script>
@@ -57,6 +54,5 @@
          <script src="js/Circle.js"></script>
          <script src="js/Point.js"></script>
          <script src="js/asg1.js"></script>
-      </body>
-   </table>
-</div>
+         </body>
+      </div>

@@ -1,4 +1,10 @@
 [[extend 'layout.html']]
+
+<style>
+    .column:hover {
+        background-color: rgb(22, 161, 216);
+    }
+</style>
 <div class="columns">
     <div class="column is-half has-text-centered">
         <a href="[[=URL('/index')]]">
@@ -10,7 +16,7 @@
     </div>
     <div class="column is-half has-text-centered">
         <h1 class="title">Guess the Drawing</h1>
-        <a href="[[=URL('words')]]">
+        <a href="[[=URL('wordGuess')]]">
             <figure class="image is-square">
                 <img src="http://127.0.0.1:8000/birds/static/images/patrickThink.png" alt="Image">
             </figure>

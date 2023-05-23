@@ -28,3 +28,35 @@ success!
 timestamp: 2023-05-12T15:34:25.293404
 ALTER TABLE "words" ADD "category" CHAR(512);
 success!
+timestamp: 2023-05-22T22:17:01.107244
+ALTER TABLE "words" ADD "chosen_word" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+success!
+timestamp: 2023-05-22T22:17:01.112243
+CREATE TABLE "drawing"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "drawings" CHAR(512)
+);
+success!
+success!
+timestamp: 2023-05-22T22:22:01.616709
+ALTER TABLE "words" ADD "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
