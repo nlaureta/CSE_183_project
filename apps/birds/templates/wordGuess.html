@@ -1,11 +1,24 @@
 [[extend 'layout.html']]
 
 [[block content]]
-    <div class="section">
-        <form method="POST">
-            <input type="text" name="guess" placeholder="Enter your guess">
-            <input type="submit" value="Submit">
-        </form>
+<div class="section">
+    <div class="container has-text-centered">
+        <div class="box has-background-warning" style="background-image: url('http://127.0.0.1:8000/birds/static/images/sky.png'); background-size: cover;">
+            <div class = "is-size-2"># Letters</div>
+            <img src="http://127.0.0.1:8000/birds/static/images/canvas.png">
+            <div>Number guess left: {{}}</div>
+            <p class="is-size-4">Guess the word:</p>
+            <form method="POST">
+                <div class="field has-addons has-addons-centered">
+                    <div class="control">
+                        <input class="input" type="text" name="guess" placeholder="Enter your guess">
+                    </div>
+                    <div class="control">
+                        <input class="button is-primary" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+</div>
 [[end]]
- 
