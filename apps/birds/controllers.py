@@ -39,3 +39,14 @@ def words():
 @action.uses('homepage.html', auth.user )
 def homepage():
     return dict()
+
+@action('/saveCanvas', method=['POST'])
+@action.uses(db, auth.user)
+def saveCanvas():
+  url = request.json.get('url')  # Get dataURL from the POST request
+
+  # Insert the new draw into the database
+  id = db.draw.insert(url=url)
+
+  # Return the id of the new draw
+  return dict(id=id)
