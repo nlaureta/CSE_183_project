@@ -5,7 +5,7 @@ from .settings import APP_FOLDER
 import os, json
 import random
 
-@action('/birds/index', method=['GET'])
+@action('/QuickDraw/index', method=['GET'])
 @action.uses('index.html', auth.user)
 def redirect_to_main_menu():
     redirect(URL('mainMenu'))
