@@ -170,12 +170,15 @@ function saveCanvas() {
     // Create a data URI of the canvas content
     const dataURI = canvas.toDataURL();
 
-    // Create a link element
-    const link = document.createElement("a");
-    link.href = dataURI;
-    link.download = "canvas.png";
-
-    // Trigger a click event on the link to start the download
-    link.click();
+    // Send a POST request to the /saveCanvas endpoint with the dataURI
+    fetch('/saveCanvas', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    
+      body: JSON.stringify({ url: dataURI })
+      }).then(response => response.json()).then(data => {
+      console.log(data); // log the server's response
+      });
 }
-
