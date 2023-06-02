@@ -10,7 +10,7 @@
                 <div v-for="url in urls">
                     <img :src="url.url">
                 </div>
-                <div>Number guess left: {{guesses}}</div>
+                <div>Number guess left: {{}}</div>
                 <p class="is-size-4">Guess the word:</p>
                 <form method="POST" @submit.prevent="checkGuess">
                     <div class="field has-addons has-addons-centered">
@@ -33,13 +33,7 @@
                     </a>
                 </div>
                 <!-- Lose page logic here -->
-				<div v-if="showLoserScreen">
-                    <h1>YOU LOSE</h1>
-                    <a class="button is-text" href="[[=URL('homepage')]]">
-                        <span class="icon"><i class="fa fa-home"></i> </span>
-                        <span>RETURN TO HOMEPAGE</span>
-                    </a>
-                </div>
+
             </div>
         </div>
     </div>

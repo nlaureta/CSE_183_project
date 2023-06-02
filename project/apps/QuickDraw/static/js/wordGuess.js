@@ -12,6 +12,7 @@ let init = (app) => {
         // Complete as you see fit.
         showWinnerScreen: false,
         showLoserScreen: false,
+        guesses: 5,
         guessedWord: "",
         urls: [],
     };
@@ -31,8 +32,13 @@ let init = (app) => {
             if (this.guessedWord.toLowerCase() === correctWord) {
                 this.showWinnerScreen = true; 
                 // logic when the guess is correct
-            } else {
-                // logic when the guess is wrong
+            }
+            else if (this.guessedWord.toLowerCase() !== correctWord && this.guesses !== 0) {
+                // logic when the guess is wrong but still have guesses
+                this.guesses--;
+            }
+            else {
+                // logic when guess is wrong and no guesses left
                 this.showLoserScreen = true;
             }
         }
