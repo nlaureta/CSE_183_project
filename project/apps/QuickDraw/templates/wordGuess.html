@@ -6,13 +6,8 @@
         <div class="box has-background-warning"
             style="background-image: url('http://127.0.0.1:8000/QuickDraw/static/images/sky.png'); background-size: cover;">
             <div v-if="!showWinnerScreen && !showLoserScreen"> <!-- shows the guess page -->
-                <div class="is-size-2">
-				[[for item in rows:]]
-				[[=item.num_let]]
-				Letters
-				</div>
-				[[pass]]
                 <div v-for="url in urls">
+                    <div class="is-size-2"># {{ url.word.length }}</div>
                     <img :src="url.url">
                 </div>
                 <div>Number guess left: {{guesses}}</div>
