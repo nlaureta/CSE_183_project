@@ -26,6 +26,8 @@ def index():
 @action("wordGuess", method=["GET", "POST"])
 @action.uses('wordGuess.html',db,  auth.user )
 def words():
+    randid = random.randrange(1,10)
+    rows = db(db.words.id == randid).select(db.words.num_let)
     if request.method == "POST":
         guessed_word = request.forms.get("guess").lower() 
         correct_word = "apple"  
@@ -33,7 +35,7 @@ def words():
         if guessed_word == correct_word:
             redirect(URL('/index'))
     
-    return dict()
+    return dict(rows=rows)
 
 @action("homepage")
 @action.uses('homepage.html', auth.user )

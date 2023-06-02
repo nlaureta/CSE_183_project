@@ -37,22 +37,24 @@ db.define_table(
 db.define_table(
     'words',
     Field('word'),
-    Field('category'))
+    Field('category'),
+    Field('num_let')
+)
 
 if db(db.words).isempty():
     w = [
-        {"word": "Strawberry", "category": "object"},
-        {"word": "Battery", "category": "object"},
-        {"word": "Shark", "category": "animal"},
-        {"word": "Rabbit", "category": "animal"},
-        {"word": "Frog", "category": "animal"},
-        {"word": "Monkey", "category": "animal"},
-        {"word": "Cook", "category": "verb"},
-        {"word": "Sleep", "category": "verb"},
-        {"word": "Canada", "category": "place"},
-        {"word": "Desert", "category": "place"}
+        {"word": "Strawberry", "category": "object", "num_let": "10"},
+        {"word": "Battery", "category": "object", "num_let": "7"},
+        {"word": "Shark", "category": "animal", "num_let": "5"},
+        {"word": "Rabbit", "category": "animal", "num_let": "6"},
+        {"word": "Frog", "category": "animal", "num_let": "4"},
+        {"word": "Monkey", "category": "animal", "num_let": "6"},
+        {"word": "Cook", "category": "verb", "num_let": "4"},
+        {"word": "Sleep", "category": "verb", "num_let": "5"},
+        {"word": "Canada", "category": "place", "num_let": "6"},
+        {"word": "Desert", "category": "place", "num_let": "6"}
     ]
     for item in w:
-        db.words.insert(word=item["word"], code=item["category"])
+        db.words.insert(word=item["word"], category=item["category"], num_let=item["num_let"])
 
 db.commit()

@@ -6,11 +6,16 @@
         <div class="box has-background-warning"
             style="background-image: url('http://127.0.0.1:8000/QuickDraw/static/images/sky.png'); background-size: cover;">
             <div v-if="!showWinnerScreen && !showLoserScreen"> <!-- shows the guess page -->
-                <div class="is-size-2"># Letters</div>
+                <div class="is-size-2">
+				[[for item in rows:]]
+				[[=item.num_let]]
+				Letters
+				[[pass]]
+				</div>
                 <div v-for="url in urls">
                     <img :src="url.url">
                 </div>
-                <div>Number guess left: {{}}</div>
+                <div>Number guess left: {{guesses}}</div>
                 <p class="is-size-4">Guess the word:</p>
                 <form method="POST" @submit.prevent="checkGuess">
                     <div class="field has-addons has-addons-centered">
@@ -33,7 +38,13 @@
                     </a>
                 </div>
                 <!-- Lose page logic here -->
-
+				<div v-if="showLoserScreen">
+                    <h1>YOU LOSE</h1>
+                    <a class="button is-text" href="[[=URL('homepage')]]">
+                        <span class="icon"><i class="fa fa-home"></i> </span>
+                        <span>RETURN TO HOMEPAGE</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
