@@ -13,7 +13,7 @@ let init = (app) => {
         showWinnerScreen: false,
         showLoserScreen: false,
         guessedWord: "",
-
+        urls: [],
     };
 
     app.enumerate = (a) => {
@@ -37,7 +37,6 @@ let init = (app) => {
             }
         }
 
-
     };
 
     // This creates the Vue instance.
@@ -47,9 +46,15 @@ let init = (app) => {
         methods: app.methods
     });
 
-    // And this initializes it.
     app.init = () => {
-
+        axios.get('/getImages') // replace with your actual route
+        .then(function(r) {
+            app.vue.urls = r.data.urls;
+            console.log(app.vue.urls)
+        })
+        .catch(error => {
+            console.error(error);
+        });
     };
 
     // Call to the initializer.

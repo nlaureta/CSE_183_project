@@ -1,6 +1,6 @@
 from py4web import action, request, abort, redirect, URL
 from .common import db, session, T, cache, auth, logger
-from .models import get_user_email
+from .models import get_user_email, get_user
 from .settings import APP_FOLDER
 import os, json
 import random
@@ -43,10 +43,17 @@ def homepage():
 @action('/saveCanvas', method=['POST'])
 @action.uses(db, auth.user)
 def saveCanvas():
+  word = request.json.get('word')
   url = request.json.get('url')  # Get dataURL from the POST request
 
   # Insert the new draw into the database
-  id = db.draw.insert(url=url)
+  id = db.draw.insert(word=word, user_id=get_user(), url=url)
 
   # Return the id of the new draw
   return dict(id=id)
+
+@action('/getImages')
+@action.uses(db, auth.user)
+def getImages():
+    urls = db(db.draw).select(limitby=(0, 1))
+    return dict(urls=urls)

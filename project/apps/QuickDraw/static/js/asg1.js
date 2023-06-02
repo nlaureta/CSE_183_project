@@ -94,7 +94,7 @@ function addActionForHtmlUI(){
 
   document.getElementById('segSlide').addEventListener('mouseup', function() {g_selectedSeg = this.value;});
   // Save Canvas Button Event
-  document.getElementById('saveCanvas').onclick = function() { saveCanvas();};
+  // document.getElementById('saveCanvas').onclick = function() { saveCanvas();};
 }
 
 function main() {
@@ -162,7 +162,7 @@ function renderAllShapes(){
   }
 }
 
-function saveCanvas() {
+function saveCanvas(word) {
     renderAllShapes();
     // Get the canvas element
     const canvas = document.getElementById("webgl");
@@ -177,8 +177,10 @@ function saveCanvas() {
         'Content-Type': 'application/json'
       },
     
-      body: JSON.stringify({ url: dataURI })
+      body: JSON.stringify({ url: dataURI, word: word })
       }).then(response => response.json()).then(data => {
       console.log(data); // log the server's response
+      console.log(word);
       });
 }
+

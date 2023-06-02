@@ -14,6 +14,9 @@ def get_user_email():
 def get_username():
     return auth.current_user.get('username') if auth.current_user else None
 
+def get_user():
+    return auth.current_user.get('id') if auth.current_user else None
+
 def get_time():
     return datetime.datetime.utcnow()
 
@@ -25,7 +28,7 @@ def get_time():
 
 db.define_table(
     'draw',
-    Field('word_id'),
+    Field('word'),
     Field('user_id'),
     Field('url'),
     auth.signature
