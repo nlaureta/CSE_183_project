@@ -40,7 +40,8 @@ db.define_table(
     Field('category'),
 )
 
-if db(db.words).isempty():
+# if db(db.words).isempty(): # in this case we can not insert all the word so I changed to insert the word in anycase
+if True:
     w = [
         {"word": "Strawberry", "category": "object"},
         {"word": "Battery", "category": "object"},

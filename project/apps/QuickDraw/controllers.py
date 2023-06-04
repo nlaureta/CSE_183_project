@@ -22,16 +22,17 @@ def index():
     rows = db(db.words.id == randid).select()
     return dict(rows=rows)
 
-
+# I think we do not need to connect correct word and guess word here
+# but we still need this function to connect wordGuess.html
 @action("wordGuess", method=["GET", "POST"])
 @action.uses('wordGuess.html',db,  auth.user )
 def words():
-    if request.method == "POST":
-        guessed_word = request.forms.get("guess").lower() 
-        correct_word = "apple"  
+    # if request.method == "POST":
+    #     guessed_word = request.forms.get("guess").lower() 
+    #     correct_word = "apple"  
         
-        if guessed_word == correct_word:
-            redirect(URL('/index'))
+    #     if guessed_word == correct_word:
+    #         redirect(URL('/index'))
     
     return dict()
 
