@@ -1,4 +1,4 @@
-timestamp: 2023-05-05T14:37:10.390601
+timestamp: 2023-06-03T17:27:41.146498
 CREATE TABLE "auth_user"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "username" CHAR(512) UNIQUE,
@@ -12,62 +12,17 @@ CREATE TABLE "auth_user"(
     "past_passwords_hash" TEXT
 );
 success!
-timestamp: 2023-05-05T14:37:10.402148
+timestamp: 2023-06-03T17:27:41.155502
 CREATE TABLE "auth_user_tag_groups"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "tagpath" CHAR(512),
     "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
 );
 success!
-timestamp: 2023-05-10T18:52:32.991457
-CREATE TABLE "words"(
-    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "word" CHAR(512)
-);
-success!
-timestamp: 2023-05-12T15:34:25.293404
-ALTER TABLE "words" ADD "category" CHAR(512);
-success!
-timestamp: 2023-05-22T22:17:01.107244
-ALTER TABLE "words" ADD "chosen_word" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
-success!
-timestamp: 2023-05-22T22:17:01.112243
-CREATE TABLE "drawing"(
-    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "drawings" CHAR(512)
-);
-success!
-success!
-timestamp: 2023-05-22T22:22:01.616709
-ALTER TABLE "words" ADD "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ;
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-success!
-timestamp: 2023-05-30T14:46:49.087864
+timestamp: 2023-06-03T17:27:41.161502
 CREATE TABLE "draw"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "word_id" CHAR(512),
+    "word" CHAR(512),
     "user_id" CHAR(512),
     "url" CHAR(512),
     "created_on" TIMESTAMP,
@@ -77,10 +32,11 @@ CREATE TABLE "draw"(
     "is_active" CHAR(1)
 );
 success!
-success!
-success!
-success!
-success!
-success!
-success!
+timestamp: 2023-06-03T17:27:41.165502
+CREATE TABLE "words"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "word" CHAR(512),
+    "category" CHAR(512),
+    "num_let" CHAR(512)
+);
 success!

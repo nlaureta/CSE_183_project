@@ -15,6 +15,7 @@ let init = (app) => {
         guesses: 5,
         guessedWord: "",
         urls: [],
+        hasDrawing: false,
     };
 
     app.enumerate = (a) => {
@@ -41,7 +42,14 @@ let init = (app) => {
                 // logic when guess is wrong and no guesses left
                 this.showLoserScreen = true;
             }
-        }
+        },
+
+        handleGuessTheDrawing(event) {
+            if (!this.hasDrawing) {
+                event.preventDefault(); // prevent page from going to guess page
+                alert("No drawings in the database to guess. Please proceed to draw first.");
+            }
+        },
 
     };
 
@@ -56,6 +64,7 @@ let init = (app) => {
         axios.get('/getImages') // replace with your actual route
         .then(function(r) {
             app.vue.urls = r.data.urls;
+            app.vue.hasDrawing = r.data.urls.length > 0; //check if there is drawings in the database
             console.log(app.vue.urls)
         })
         .catch(error => {
