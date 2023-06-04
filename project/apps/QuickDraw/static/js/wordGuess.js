@@ -16,6 +16,7 @@ let init = (app) => {
         guessedWord: "",
         urls: [],
         hasDrawing: false,
+        audioElement: null,
     };
 
     app.enumerate = (a) => {
@@ -31,17 +32,26 @@ let init = (app) => {
         checkGuess() {
             const correctWord = "apple";
             if (this.guessedWord.toLowerCase() === correctWord) {
-                this.showWinnerScreen = true; 
                 // logic when the guess is correct
-            }
+                this.showWinnerScreen = true;
+                this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/ApplauseSound.mp3');
+            } 
             else if (this.guessedWord.toLowerCase() !== correctWord && this.guesses !== 0) {
                 // logic when the guess is wrong but still have guesses
                 this.guesses--;
-            }
+            } 
             else {
                 // logic when guess is wrong and no guesses left
                 this.showLoserScreen = true;
+                this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/SadTrumpet.mp3');
             }
+        },
+        
+        playAudio(src) {
+            if (!this.audioElement) {
+                this.audioElement = new Audio(src);
+            }
+            this.audioElement.play();
         },
 
         handleGuessTheDrawing(event) {
