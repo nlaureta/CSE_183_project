@@ -18,7 +18,7 @@ def mainMenu():
 @action('/index')
 @action.uses('index.html', db,  auth.user)
 def index():
-    randid = random.randrange(1, 20)
+    randid = random.randrange(1, 100)
     rows = db(db.words.id == randid).select()
     return dict(rows=rows)
 

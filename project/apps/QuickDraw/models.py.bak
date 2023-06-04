@@ -38,6 +38,7 @@ db.define_table(
     'words',
     Field('word'),
     Field('category'),
+    Field('num_let')
 )
 
 if db(db.words).isempty():
