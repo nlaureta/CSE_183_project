@@ -57,5 +57,7 @@ def saveCanvas():
 @action('/getImages')
 @action.uses(db, auth.user)
 def getImages():
-    urls = db(db.draw).select(limitby=(0, 1))
+    total_records = db(db.draw).count()
+    random_index = random.randint(0, total_records - 1) # get random image in our database
+    urls = db(db.draw).select(limitby=(random_index, random_index + 1))
     return dict(urls=urls)

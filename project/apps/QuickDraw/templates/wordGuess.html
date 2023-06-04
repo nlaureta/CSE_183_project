@@ -9,20 +9,21 @@
                 <div v-for="url in urls">
                     <div class="is-size-2"># {{ url.word.length }}</div>
                     <img :src="url.url">
+                    <div v-on="setWord(url.word)"></div>
+                    <div>Number guess left: {{guesses}}</div>
+                    <p class="is-size-4">Guess the word:</p>
+                    <form method="POST" @submit.prevent="checkGuess()">
+                        <div class="field has-addons has-addons-centered">
+                            <div class="control">
+                                <input class="input" type="text" name="guess" placeholder="Enter your guess"
+                                    v-model="guessedWord">
+                            </div>
+                            <div class="control">
+                                <input class="button is-primary" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div>Number guess left: {{guesses}}</div>
-                <p class="is-size-4">Guess the word:</p>
-                <form method="POST" @submit.prevent="checkGuess">
-                    <div class="field has-addons has-addons-centered">
-                        <div class="control">
-                            <input class="input" type="text" name="guess" placeholder="Enter your guess"
-                                v-model="guessedWord">
-                        </div>
-                        <div class="control">
-                            <input class="button is-primary" type="submit" value="Submit">
-                        </div>
-                    </div>
-                </form>
             </div>
             <div v-else> <!-- shows either lose or win page -->
                 <div v-if="showWinnerScreen">

@@ -14,6 +14,7 @@ let init = (app) => {
         showLoserScreen: false,
         guesses: 5,
         guessedWord: "",
+        correctWord: "",
         urls: [],
         hasDrawing: false,
         audioElement: null,
@@ -30,13 +31,13 @@ let init = (app) => {
     app.methods = {
         // Complete as you see fit.
         checkGuess() {
-            const correctWord = "apple";
-            if (this.guessedWord.toLowerCase() === correctWord) {
+            console.log(this.correctWord);
+            if (this.guessedWord.toLowerCase() === this.correctWord.toLowerCase()) {
                 // logic when the guess is correct
                 this.showWinnerScreen = true;
                 this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/ApplauseSound.mp3');
             } 
-            else if (this.guessedWord.toLowerCase() !== correctWord && this.guesses !== 0) {
+            else if (this.guessedWord.toLowerCase() !== this.correctWord.toLowerCase() && this.guesses !== 0) {
                 // logic when the guess is wrong but still have guesses
                 this.guesses--;
             } 
@@ -61,6 +62,10 @@ let init = (app) => {
             }
         },
 
+        setWord(correctWord){ //set the correct word
+            app.vue.correctWord = correctWord;
+        }
+
     };
 
     // This creates the Vue instance.
@@ -71,7 +76,7 @@ let init = (app) => {
     });
 
     app.init = () => {
-        axios.get('/getImages') // replace with your actual route
+        axios.get('/getImages')
         .then(function(r) {
             app.vue.urls = r.data.urls;
             app.vue.hasDrawing = r.data.urls.length > 0; //check if there is drawings in the database
