@@ -70,15 +70,17 @@ def getImages():
 @action('/getWords')
 @action.uses(db, auth.user)
 def getWords():
-    used_words = db(db.draw.user_id == get_user()).select().as_list()  # get words already drawn by user
+    used_words = [row['word'] for row in db(db.draw.user_id == get_user()).select(db.draw.word).as_list()]  
     total_records = db(db.words).count()
     word = None
 
     while True:
-        random_index = random.randint(0, total_records - 1)  # get random words in our database
-        potential_word = db(db.words).select(limitby=(random_index, random_index + 1)).first()
-        if potential_word not in used_words:  # if user hasn't drawn this word yet
-            word = potential_word
-            break  # exit the loop
+        random_index = random.randint(0, total_records - 1)  
+        potential_word_row = db(db.words).select(db.words.word, limitby=(random_index, random_index + 1)).first()
+        if potential_word_row:
+            potential_word = potential_word_row['word']
+            if potential_word not in used_words:  
+                word = potential_word
+                break  
 
     return dict(word=word)
