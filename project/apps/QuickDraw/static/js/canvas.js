@@ -179,8 +179,12 @@ function saveCanvas(word) {
     
       body: JSON.stringify({ url: dataURI, word: word })
       }).then(response => response.json()).then(data => {
-      console.log(data); // log the server's response
-      console.log(word);
       });
 }
 
+function saveAndConfirm(word) { // pop up message to confrim that user saved
+  saveCanvas(word);
+  confirm('You have saved the canvas');
+}
+
+window.saveCanvas = saveCanvas;

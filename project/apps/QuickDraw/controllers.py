@@ -46,7 +46,7 @@ def homepage():
 def saveCanvas():
   word = request.json.get('word')
   url = request.json.get('url')  # Get dataURL from the POST request
-
+  
   # Insert the new draw into the database
   id = db.draw.insert(word=word, user_id=get_user(), url=url)
 
@@ -57,6 +57,28 @@ def saveCanvas():
 @action.uses(db, auth.user)
 def getImages():
     total_records = db(db.draw).count()
+
+    # Check if there are any records in the draw table
+    if total_records == 0:
+        return dict(urls=[], message="No images in the database")
+
+    # If there are records, proceed with getting a random image
     random_index = random.randint(0, total_records - 1) # get random image in our database
     urls = db(db.draw).select(limitby=(random_index, random_index + 1))
     return dict(urls=urls)
+
+@action('/getWords')
+@action.uses(db, auth.user)
+def getWords():
+    used_words = db(db.draw.user_id == get_user()).select().as_list()  # get words already drawn by user
+    total_records = db(db.words).count()
+    word = None
+
+    while True:
+        random_index = random.randint(0, total_records - 1)  # get random words in our database
+        potential_word = db(db.words).select(limitby=(random_index, random_index + 1)).first()
+        if potential_word not in used_words:  # if user hasn't drawn this word yet
+            word = potential_word
+            break  # exit the loop
+
+    return dict(word=word)

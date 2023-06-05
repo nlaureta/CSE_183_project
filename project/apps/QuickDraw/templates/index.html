@@ -34,23 +34,24 @@
          </body>
       </div>
 
-      <div class="column">
+      <div class="column" id="vue-target" v-cloak>
          <h1 class="title">Your Word:</h1>
-         [[for item in rows:]]
-         [[=item.word]]
+            <div class="is-size-2"># {{ word.word }}</div>
          <p>
-            <button type="button" onclick="saveCanvas('[[=item.word]]')">Save Canvas</button>
+            <button @click="saveAndConfirm(word.word)">Save and confirm</button>
          </p>
-         [[pass]]
       </div>
 
    </div>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
 <script src="js/lib/webgl-utils.js"></script>
 <script src="js/lib/webgl-debug.js"></script>
 <script src="js/lib/cuon-utils.js"></script>
 <script src="js/Triangle.js"></script>
 <script src="js/Circle.js"></script>
 <script src="js/Point.js"></script>
-<script src="js/asg1.js"></script>
+<script src="js/canvas.js"></script>
+<script src="js/index.js"></script>
