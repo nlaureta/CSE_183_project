@@ -35,13 +35,21 @@
       </div>
 
       <div class="column" id="vue-target" v-cloak>
-         <h1 class="title">Your Word:</h1>
-            <div class="is-size-2"># {{ word }}</div>
-         <p>
-            <button @click="saveAndConfirm(word)">Save and confirm</button>
-         </p>
-      </div>
+         <div v-if="word == undefined ">
+            <div class="is-size-2">You have drawn all the words in our database go back to homepage!</div>
+         </div>
+         <div v-else>
+            <h1 class="title">Your Word:</h1>
 
+            
+            <div class="is-size-2"># {{ word }}></div>
+           
+            <p>
+               <button @click="saveAndConfirm(word)">Save and confirm</button>
+            </p>
+         </div>
+         
+      </div>
    </div>
 </div>
 

@@ -70,17 +70,37 @@ def getImages():
 @action('/getWords')
 @action.uses(db, auth.user)
 def getWords():
+    # Get all the words that the user has already drawn.
     used_words = [row['word'] for row in db(db.draw.user_id == get_user()).select(db.draw.word).as_list()]  
+
+    # Count the total number of words in the 'words' table
     total_records = db(db.words).count()
+
+    # Check if the user has already drawn all the words.
+    if len(used_words) >= total_records:
+        return dict(message="all_words_drawn")
+
+    # Initialize the word to None. This variable will store the word we're going to return.
     word = None
 
     while True:
-        random_index = random.randint(0, total_records - 1)  
-        potential_word_row = db(db.words).select(db.words.word, limitby=(random_index, random_index + 1)).first()
-        if potential_word_row:
-            potential_word = potential_word_row['word']
-            if potential_word not in used_words:  
-                word = potential_word
-                break  
+        # Generate a random index within the range of total records in the 'words' table
+        random_index = random.randint(0, total_records - 1) 
 
+        # Fetch the word at the random index. We limit the selection to only one record at the random index.
+        potential_word_row = db(db.words).select(db.words.word, limitby=(random_index, random_index + 1)).first()
+
+        # If a word was fetched (i.e., if the fetched row is not None)
+        if potential_word_row:
+            # Extract the word string from the Row
+            potential_word = potential_word_row['word']
+
+            # If this word hasn't been drawn by the user yet
+            if potential_word not in used_words:
+                # Set this as the word we're going to return
+                word = potential_word
+                # And break out of the loop, since we've found a word
+                break 
+
+    # Return the word as a dictionary. The 'word' key will contain the word string.
     return dict(word=word)
