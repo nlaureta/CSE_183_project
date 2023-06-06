@@ -1,0 +1,57 @@
+[[extend 'layout.html']]
+
+[[block content]]
+<div class="section" id="vue-target" v-cloak>
+    <div class="container has-text-centered">
+        <div class="box has-background-warning"
+            style="background-image: url('http://127.0.0.1:8000/QuickDraw/static/images/sky.png'); background-size: cover;">
+            <div v-if="!showWinnerScreen && !showLoserScreen"> <!-- shows the guess page -->
+                <div v-for="url in urls">
+                    <div class="is-size-2"># {{ url.word.length }} letters</div>
+                    <img :src="url.url">
+                    <div v-on="setWord(url.word)"></div>
+                    <div>Number guess left: {{guesses}}</div>
+                    <p class="is-size-4">Guess the word:</p>
+                    <form method="POST" @submit.prevent="checkGuess()">
+                        <div class="field has-addons has-addons-centered">
+                            <div class="control">
+                                <input class="input" type="text" name="guess" placeholder="Enter your guess"
+                                    v-model="guessedWord">
+                            </div>
+                            <div class="control">
+                                <input class="button is-primary" type="submit" value="Submit">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div v-else> <!-- shows either lose or win page -->
+                <div v-for="url in urls">
+                    <div v-if="showWinnerScreen">
+                        <h1>YOU WIN</h1>
+                        <div v-on="setResult(url.id, true)"></div>
+                        <a class="button is-text" href="[[=URL('homepage')]]">
+                            <span class="icon"><i class="fa fa-home"></i> </span>
+                            <span>RETURN TO HOMEPAGE</span>
+                        </a>
+                    </div>
+                    <!-- Lose page logic here -->
+				    <div v-if="showLoserScreen">
+                        <h1>YOU LOSE</h1>
+                        <div v-on="setResult(url.id, false)"></div>
+                        <a class="button is-text" href="[[=URL('homepage')]]">
+                            <span class="icon"><i class="fa fa-home"></i> </span>
+                            <span>RETURN TO HOMEPAGE</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+[[block page_scripts]]
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+<script src="js/wordGuess.js"></script>
+[[end]]

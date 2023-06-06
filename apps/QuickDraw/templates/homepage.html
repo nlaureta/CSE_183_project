@@ -1,0 +1,31 @@
+[[extend 'layout.html']]
+
+<style>
+    .column:hover {
+        background-image: url('http://127.0.0.1:8000/QuickDraw/static/images/sky.png'); background-size: cover;
+    }
+</style>
+<div class="columns" id="vue-target">
+    <div class="column is-half has-text-centered">
+        <a href="[[=URL('/index')]]">
+            <h1 class="title">Draw Something</h1>
+            <figure class="image is-square">
+                <img src="http://127.0.0.1:8000/QuickDraw/static/images/Doodlebob.png" alt="Image">
+            </figure>
+        </a>
+    </div>
+    <div class="column is-half has-text-centered" >
+        <h1 class="title">Guess the Drawing</h1>
+        <a href="[[=URL('wordGuess')]]"v-on:click="handleGuessTheDrawing($event)">
+            <figure class="image is-square">
+                <img src="http://127.0.0.1:8000/QuickDraw/static/images/patrickThink.png" alt="Image">
+            </figure>
+        </a>
+    </div>
+</div>
+
+[[block page_scripts]]
+<script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js"></script>
+<script src="js/wordGuess.js"></script>
+[[end]]
