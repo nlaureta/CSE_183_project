@@ -39,3 +39,11 @@ CREATE TABLE "words"(
     "category" CHAR(512)
 );
 success!
+timestamp: 2023-06-05T21:02:40.968637
+CREATE TABLE "result"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "win" CHAR(512),
+    "user_id" CHAR(512),
+    "draw_id" INTEGER REFERENCES "draw" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
+);
+success!
