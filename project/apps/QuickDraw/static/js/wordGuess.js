@@ -15,9 +15,11 @@ let init = (app) => {
         guesses: 5,
         guessedWord: "",
         correctWord: "",
-        urls: [],
+        urls: '',
         hasDrawing: false,
         audioElement: null,
+        win: '',
+        draw_id: '',
     };
 
     app.enumerate = (a) => {
@@ -64,6 +66,25 @@ let init = (app) => {
 
         setWord(correctWord){ //set the correct word
             app.vue.correctWord = correctWord;
+        },
+
+        setResult(draw_id, win){
+            app.vue.draw_id = draw_id;
+            app.vue.win = win;
+            this.saveResult();
+        },
+
+        saveResult(){
+            axios.post('/saveResult', {
+                draw_id: app.vue.draw_id,
+                win: app.vue.win
+            })
+            .then(function(r) {
+                console.log('Result saved with ID:', r.data.id);
+            })
+            .catch(error => {
+                console.error(error);
+            });
         }
 
     };

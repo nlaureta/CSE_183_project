@@ -18,9 +18,10 @@ def mainMenu():
 @action('/index')
 @action.uses('index.html', db,  auth.user)
 def index():
-    randid = random.randrange(1, 20)
-    rows = db(db.words.id == randid).select()
-    return dict(rows=rows)
+    # randid = random.randrange(1, 20)
+    # rows = db(db.words.id == randid).select()
+    # return dict(rows=rows)
+    return dict()
 
 # I think we do not need to connect correct word and guess word here
 # but we still need this function to connect wordGuess.html
@@ -53,18 +54,51 @@ def saveCanvas():
   # Return the id of the new draw
   return dict(id=id)
 
+@action('/saveResult', method=['POST'])
+@action.uses(db, auth.user)
+def saveResult():
+  draw_id = request.json.get('draw_id')
+  win = request.json.get('win') 
+  
+  # Insert the new result into the database
+  id = db.result.insert(draw_id=draw_id, user_id=get_user(), win=win)
+
+  # Return the id of the new draw
+  return dict(id=id)
+
 @action('/getImages')
 @action.uses(db, auth.user)
 def getImages():
+    used_images = [row['draw_id'] for row in db(db.result.user_id == get_user()).select(db.result.draw_id).as_list()]  
     total_records = db(db.draw).count()
 
-    # Check if there are any records in the draw table
-    if total_records == 0:
-        return dict(urls=[], message="No images in the database")
+    # Check if the user has already drawn all the words.
+    if len(used_images) >= total_records:
+        return dict(urls=[], message="all_images_played")
+    
+    # Initialize the draw_id to None. This variable will store the id of the draw we're going to return.
+    urls = None
 
-    # If there are records, proceed with getting a random image
-    random_index = random.randint(0, total_records - 1) # get random image in our database
-    urls = db(db.draw).select(limitby=(random_index, random_index + 1))
+    while True:
+        # Generate a random index within the range of total records in the 'draw' table
+        random_index = random.randint(0, total_records - 1) 
+
+        # Fetch the draw at the random index. We limit the selection to only one record at the random index.
+        potential_image_row = db(db.draw).select(db.draw.id, limitby=(random_index, random_index + 1)).first()
+
+        # If a draw was fetched (i.e., if the fetched row is not None)
+        if potential_image_row:
+            # Extract the id from the Row
+            potential_image = potential_image_row['id']
+
+            # If this draw hasn't been used by the user yet
+            if potential_image not in used_images:
+                # Set this as the draw id we're going to return
+                id = potential_image_row
+                urls = db(db.draw.id == id).select()
+                break 
+
+    # Return the draw id as a dictionary. The 'draw_id' key will contain the draw id.
     return dict(urls=urls)
 
 @action('/getWords')

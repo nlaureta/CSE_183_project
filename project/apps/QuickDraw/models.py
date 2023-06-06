@@ -35,6 +35,13 @@ db.define_table(
 )
 
 db.define_table(
+    'result',
+    Field('win'),
+    Field('user_id'),
+    Field('draw_id', 'reference draw')
+)
+
+db.define_table(
     'words',
     Field('word'),
     Field('category'),

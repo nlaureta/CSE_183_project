@@ -26,20 +26,24 @@
                 </div>
             </div>
             <div v-else> <!-- shows either lose or win page -->
-                <div v-if="showWinnerScreen">
-                    <h1>YOU WIN</h1>
-                    <a class="button is-text" href="[[=URL('homepage')]]">
-                        <span class="icon"><i class="fa fa-home"></i> </span>
-                        <span>RETURN TO HOMEPAGE</span>
-                    </a>
-                </div>
-                <!-- Lose page logic here -->
-				<div v-if="showLoserScreen">
-                    <h1>YOU LOSE</h1>
-                    <a class="button is-text" href="[[=URL('homepage')]]">
-                        <span class="icon"><i class="fa fa-home"></i> </span>
-                        <span>RETURN TO HOMEPAGE</span>
-                    </a>
+                <div v-for="url in urls">
+                    <div v-if="showWinnerScreen">
+                        <h1>YOU WIN</h1>
+                        <div v-on="setResult(url.id, true)"></div>
+                        <a class="button is-text" href="[[=URL('homepage')]]">
+                            <span class="icon"><i class="fa fa-home"></i> </span>
+                            <span>RETURN TO HOMEPAGE</span>
+                        </a>
+                    </div>
+                    <!-- Lose page logic here -->
+				    <div v-if="showLoserScreen">
+                        <h1>YOU LOSE</h1>
+                        <div v-on="setResult(url.id, false)"></div>
+                        <a class="button is-text" href="[[=URL('homepage')]]">
+                            <span class="icon"><i class="fa fa-home"></i> </span>
+                            <span>RETURN TO HOMEPAGE</span>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
