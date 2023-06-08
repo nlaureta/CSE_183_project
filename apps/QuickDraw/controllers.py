@@ -4,6 +4,7 @@ from .models import get_user_email, get_user
 from .settings import APP_FOLDER
 import os, json
 import random
+from py4web.core import HTTP
 
 @action('/QuickDraw/index', method=['GET'])
 @action.uses('index.html', auth.user)
@@ -45,8 +46,11 @@ def words():
     return dict()
 
 @action("homepage")
-@action.uses('homepage.html', auth.user )
+@action.uses('homepage.html', auth.user,db )
 def homepage():
+    user_email = get_user_email()
+    if user_email != auth.current_user.get('email'):
+         redirect("https://http.cat/403")
     return dict()
 
 @action('/saveCanvas', method=['POST'])
