@@ -21,6 +21,9 @@ def mainMenu():
 @action.uses('resultPage.html',db, auth.user)
 def resultPage():
     results = db(db.result.user_id == get_user()).select()
+    user_email = get_user_email()
+    if user_email != auth.current_user.get('email'): #check if email matches with current logged in user
+        redirect("https://http.cat/403")
     return dict(results=results)
 
 @action('/index')
@@ -29,6 +32,9 @@ def index():
     # randid = random.randrange(1, 20)
     # rows = db(db.words.id == randid).select()
     # return dict(rows=rows)
+    user_email = get_user_email()
+    if user_email != auth.current_user.get('email'): #check if email matches with current logged in user
+        redirect("https://http.cat/403")
     return dict()
 
 # I think we do not need to connect correct word and guess word here
@@ -42,6 +48,10 @@ def words():
         
     #     if guessed_word == correct_word:
     #         redirect(URL('/index'))
+
+    user_email = get_user_email()
+    if user_email != auth.current_user.get('email'): #check if email matches with current logged in user
+        redirect("https://http.cat/403")
     
     return dict()
 
@@ -50,7 +60,7 @@ def words():
 def homepage():
     user_email = get_user_email()
     if user_email != auth.current_user.get('email'):
-         redirect("https://http.cat/403")
+        redirect("https://http.cat/403")
     return dict()
 
 @action('/saveCanvas', method=['POST'])
