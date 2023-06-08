@@ -8,6 +8,7 @@
             <div v-if="!showWinnerScreen && !showLoserScreen"> <!-- shows the guess page -->
                 <div v-for="url in urls">
                     <div class="is-size-2"># {{ url.word.length }} letters</div>
+					<div class="is-size-2" v-if="guesses == 1">Word Category: {{url.category}}</div>
                     <img :src="url.url">
                     <div v-on="setWord(url.word)"></div>
                     <div>Number guess left: {{guesses}}</div>
@@ -29,6 +30,9 @@
                 <div v-for="url in urls">
                     <div v-if="showWinnerScreen">
                         <h1>YOU WIN</h1>
+						<div>
+							<img src="http://127.0.0.1:8000/QuickDraw/static/images/sweetvictory.png" alt="Image">
+						</div>
                         <div v-on="setResult(url.id, true)"></div>
                         <a class="button is-text" href="[[=URL('homepage')]]">
                             <span class="icon"><i class="fa fa-home"></i> </span>
@@ -38,6 +42,9 @@
                     <!-- Lose page logic here -->
 				    <div v-if="showLoserScreen">
                         <h1>YOU LOSE</h1>
+						<div>
+							<img src="http://127.0.0.1:8000/QuickDraw/static/images/patrickPlank.png" alt="Image">
+						</div>
                         <div v-on="setResult(url.id, false)"></div>
                         <a class="button is-text" href="[[=URL('homepage')]]">
                             <span class="icon"><i class="fa fa-home"></i> </span>
