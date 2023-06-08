@@ -8,7 +8,6 @@
             <div v-if="!showWinnerScreen && !showLoserScreen"> <!-- shows the guess page -->
                 <div v-for="url in urls">
                     <div class="is-size-2"># {{ url.word.length }} letters</div>
-					<div class="is-size-2" v-if="guesses == 1">Word Category: {{url.category}}</div>
                     <img :src="url.url">
                     <div v-on="setWord(url.word)"></div>
                     <div>Number guess left: {{guesses}}</div>
