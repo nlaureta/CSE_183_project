@@ -37,7 +37,7 @@ let init = (app) => {
             if (this.guessedWord.toLowerCase() === this.correctWord.toLowerCase()) {
                 // logic when the guess is correct
                 this.showWinnerScreen = true;
-                this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/sweetvictory.mp3');
+                this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/ApplauseSound.mp3');
             } 
             else if (this.guessedWord.toLowerCase() !== this.correctWord.toLowerCase() && this.guesses !== 0) {
                 // logic when the guess is wrong but still have guesses
