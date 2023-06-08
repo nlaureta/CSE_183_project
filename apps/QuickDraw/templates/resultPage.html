@@ -1,0 +1,23 @@
+[[extend 'layout.html']]
+
+<div class="section">
+    <h1 class="title">Your Game Results</h1>
+    <div class="container">
+       <table class="table is-striped is-fullwidth">
+          <tr>
+             <th>Username</th>
+             <th>Win</th>
+             <th>Answer</th>
+             <th>Drawing</th>
+          </tr>
+          [[for result in results:]]
+          <tr>
+             <td>[[=result.user_id.username]]</td>
+             <td>[[=result.win]]</td>
+             <td>[[=result.draw_id.word]]</td>
+             <td><img src="[[=result.draw_id.url]]" alt="Drawing" width="50" height="50"></td>
+          </tr>
+          [[pass]]
+       </table>
+    </div>
+</div>

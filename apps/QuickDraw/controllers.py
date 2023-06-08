@@ -15,6 +15,13 @@ def redirect_to_main_menu():
 def mainMenu():
     return dict()
 
+# result page only show current user result
+@action('resultPage')
+@action.uses('resultPage.html',db, auth.user)
+def resultPage():
+    results = db(db.result.user_id == get_user()).select()
+    return dict(results=results)
+
 @action('/index')
 @action.uses('index.html', db,  auth.user)
 def index():
@@ -84,7 +91,7 @@ def getImages():
         random_index = random.randint(0, total_records - 1) 
 
         # Fetch the draw at the random index. We limit the selection to only one record at the random index.
-        potential_image_row = db(db.draw).select(db.draw.id, limitby=(random_index, random_index + 1)).first()
+        potential_image_row = db(db.draw.user_id != get_user()).select(db.draw.id, limitby=(random_index, random_index + 1)).first() # user only get other's drawing
 
         # If a draw was fetched (i.e., if the fetched row is not None)
         if potential_image_row:
