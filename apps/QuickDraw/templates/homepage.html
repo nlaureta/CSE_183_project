@@ -5,9 +5,14 @@
         background-image: url('http://127.0.0.1:8000/QuickDraw/static/images/sky.png'); background-size: cover;
     }
 </style>
-<div class="has-text-centered">
-    <a href="[[=URL('resultPage')]]" class="button">Go to Results</a>
-</div>
+
+<a href="[[=URL('resultPage')]]">
+    <div class="column has-text-centered">
+        <div class="column">
+            <h1 class="title">Go to Results</h1>
+        </div>
+    </div>
+</a>
 
 <div class="columns" id="vue-target">
     <div class="column is-half has-text-centered">
