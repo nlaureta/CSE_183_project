@@ -20,12 +20,6 @@ def get_user():
 def get_time():
     return datetime.datetime.utcnow()
 
-### Define your table below
-#
-# db.define_table('thing', Field('name'))
-#
-## always commit your models to avoid problems later
-
 db.define_table(
     'draw',
     Field('word'),
