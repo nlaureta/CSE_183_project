@@ -17,7 +17,7 @@ let init = (app) => {
     app.methods = {
         saveAndConfirm: (word) => {
             window.saveCanvas(word);
-            confirm('You have saved the canvas');
+            confirm('You have saved the canvas. Please return to the Homepage');
         },
     };
 
