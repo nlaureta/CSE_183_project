@@ -69,8 +69,8 @@ def saveCanvas():
   word = request.json.get('word')
   url = request.json.get('url')  # Get dataURL from the POST request
   
-  # Insert the new draw into the database
-  id = db.draw.insert(word=word, user_id=get_user(), url=url)
+  # Insert the new draw into the database or Update the url
+  id = db.draw.update_or_insert((db.draw.word == word) & (db.draw.user_id == get_user()), word=word, user_id=get_user(), url=url)
 
   # Return the id of the new draw
   return dict(id=id)

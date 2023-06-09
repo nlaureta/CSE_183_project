@@ -60,7 +60,7 @@ let init = (app) => {
         handleGuessTheDrawing(event) {
             if (!this.hasDrawing) {
                 event.preventDefault(); // prevent page from going to guess page
-                alert("No drawings in the database to guess. Please proceed to draw first.");
+                alert("No drawings are currently available in the database for guessing. Please wait for others to draw first");
             }
         },
 
