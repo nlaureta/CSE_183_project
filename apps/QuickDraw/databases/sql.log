@@ -1,4 +1,4 @@
-timestamp: 2023-06-05T17:55:53.002843
+timestamp: 2023-06-09T13:45:47.501289
 CREATE TABLE "auth_user"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "username" CHAR(512) UNIQUE,
@@ -12,18 +12,18 @@ CREATE TABLE "auth_user"(
     "past_passwords_hash" TEXT
 );
 success!
-timestamp: 2023-06-05T17:55:53.007875
+timestamp: 2023-06-09T13:45:47.505865
 CREATE TABLE "auth_user_tag_groups"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "tagpath" CHAR(512),
     "record_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
 );
 success!
-timestamp: 2023-06-05T17:55:53.010875
+timestamp: 2023-06-09T13:45:47.509863
 CREATE TABLE "draw"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "word" CHAR(512),
-    "user_id" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
     "url" CHAR(512),
     "created_on" TIMESTAMP,
     "created_by" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
@@ -32,18 +32,18 @@ CREATE TABLE "draw"(
     "is_active" CHAR(1)
 );
 success!
-timestamp: 2023-06-05T17:55:53.013876
+timestamp: 2023-06-09T13:45:47.512863
+CREATE TABLE "result"(
+    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
+    "win" CHAR(512),
+    "user_id" INTEGER REFERENCES "auth_user" ("id") ON DELETE CASCADE ON UPDATE CASCADE  ,
+    "draw_id" INTEGER REFERENCES "draw" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
+);
+success!
+timestamp: 2023-06-09T13:45:47.514768
 CREATE TABLE "words"(
     "id" INTEGER PRIMARY KEY AUTOINCREMENT,
     "word" CHAR(512),
     "category" CHAR(512)
-);
-success!
-timestamp: 2023-06-05T21:02:40.968637
-CREATE TABLE "result"(
-    "id" INTEGER PRIMARY KEY AUTOINCREMENT,
-    "win" CHAR(512),
-    "user_id" CHAR(512),
-    "draw_id" INTEGER REFERENCES "draw" ("id") ON DELETE CASCADE ON UPDATE CASCADE  
 );
 success!
