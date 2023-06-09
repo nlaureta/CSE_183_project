@@ -1,17 +1,17 @@
 [[extend 'layout.html']]
 
 <div class="section">
-   <h1 class="title has-text-centered">Name of Game Here</h1>
+   <h1 class="is-size-1 has-text-centered has-text-weight-bold is-family-secondary has-text-primary has-background-grey-lighter is-underlined is-uppercase">Quick Draw</h1>
    <div class="columns is-centered is-vcentered">
-      <div class="column">
-         <div class="has-text-centered">
-            <div class="buttons is-centered">
-               <a class="button is-warning" href="[[=URL('homepage')]]">
-                  <span>Play</span>
-               </a>
-            </div>
-            <img src="http://127.0.0.1:8000/QuickDraw/static/images/Doodlebob.png" alt="Image">
+     <div class="column">
+       <div class="has-text-centered has-background-grey-lighter">
+         <div style="position: relative; display: inline-block;">
+           <img src="http://127.0.0.1:8000/QuickDraw/static/images/Doodlebob.png" alt="Image" style="display: block; margin: 0 auto;">
+           <a class="button is-warning is-outlined is-rounded" href="[[=URL('homepage')]]" style="position: absolute; top: 13%; left: 50%; transform: translate(-50%, -50%);">
+             <span class="is-size-2 has-text-centered has-text-weight-bold is-family-secondary">Play</span>
+           </a>
          </div>
-      </div>
+       </div>
+     </div>
    </div>
-</div>
+ </div>
