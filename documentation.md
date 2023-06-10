@@ -1,4 +1,8 @@
 
+# Documentation for Web Drawing Application
+
+This documentation explains the main components of the web drawing application which uses Py4Web, Vue.js, WebGL, Bulma CSS framework and Axios.
+
 # QuickDraw 
 
 ## Description
@@ -78,6 +82,6 @@ The menu on the left-hand side gives users access to their personal settings, su
 We appreciate all contributions! Please refer to the `CONTRIBUTING.md` file for guidelines.
 
 ## License
-QuickDraw is licensed under the MIT License. For more details, please see the `LICENSE.md` file.
+QuickDraw is licensed under the CSE 183 course code of conduct by UC Santa Cruz License. For more details, please see the LICENSE.md file.
 
 For further information or to report issues, please visit our GitHub repository at `https://github.com/QuickDraw/quickdraw.git`.
