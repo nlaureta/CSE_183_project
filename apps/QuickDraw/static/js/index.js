@@ -29,13 +29,13 @@ let init = (app) => {
 
     app.init = () => {
         axios.get('/getWords')
-        .then(function(r) {
-            app.vue.word = r.data.word;
-            console.log(app.vue.word)
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            .then(function (r) {
+                app.vue.word = r.data.word;
+                console.log(app.vue.word)
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
 
     app.init();

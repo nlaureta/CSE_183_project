@@ -29,9 +29,9 @@
                 <div v-for="url in urls">
                     <div v-if="showWinnerScreen">
                         <h1 class="is-size-1 has-text-success-dark">YOU WIN</h1>
-						<div>
-							<img src="http://127.0.0.1:8000/QuickDraw/static/images/sweetvictory.png" alt="Image">
-						</div>
+                        <div>
+                            <img src="http://127.0.0.1:8000/QuickDraw/static/images/sweetvictory.png" alt="Image">
+                        </div>
                         <div v-on="setResult(url.id, true)"></div>
                         <a class="button is-text" href="[[=URL('homepage')]]">
                             <span class="icon"><i class="fa fa-home"></i> </span>
@@ -39,11 +39,11 @@
                         </a>
                     </div>
                     <!-- Lose page logic here -->
-				    <div v-if="showLoserScreen">
-                        <h1 class = "is-size-1 has-text-danger">YOU LOSE</h1>
-						<div>
-							<img src="http://127.0.0.1:8000/QuickDraw/static/images/patrickPlank.png" alt="Image">
-						</div>
+                    <div v-if="showLoserScreen">
+                        <h1 class="is-size-1 has-text-danger">YOU LOSE</h1>
+                        <div>
+                            <img src="http://127.0.0.1:8000/QuickDraw/static/images/patrickPlank.png" alt="Image">
+                        </div>
                         <h2 class="is-size-3">The word was {{url.word}}</h2>
                         <div v-on="setResult(url.id, false)"></div>
                         <a class="button is-text" href="[[=URL('homepage')]]">

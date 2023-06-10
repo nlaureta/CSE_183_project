@@ -30,18 +30,18 @@ let init = (app) => {
                 // logic when the guess is correct
                 this.showWinnerScreen = true;
                 this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/sweetvictory.mp3');
-            } 
+            }
             else if (this.guessedWord.toLowerCase() !== this.correctWord.toLowerCase() && this.guesses !== 1) {
                 // logic when the guess is wrong but still have guesses
                 this.guesses--;
-            } 
+            }
             else {
                 // logic when guess is wrong and no guesses left
                 this.showLoserScreen = true;
                 this.playAudio('http://127.0.0.1:8000/QuickDraw/static/sounds/SadTrumpet.mp3');
             }
         },
-        
+
         playAudio(src) {
             if (!this.audioElement) {
                 this.audioElement = new Audio(src);
@@ -56,27 +56,27 @@ let init = (app) => {
             }
         },
 
-        setWord(correctWord){ //set the correct word
+        setWord(correctWord) { //set the correct word
             app.vue.correctWord = correctWord;
         },
 
-        setResult(draw_id, win){
+        setResult(draw_id, win) {
             app.vue.draw_id = draw_id;
             app.vue.win = win;
             this.saveResult();
         },
 
-        saveResult(){
+        saveResult() {
             axios.post('/saveResult', {
                 draw_id: app.vue.draw_id,
                 win: app.vue.win
             })
-            .then(function(r) {
-                console.log('Result saved with ID:', r.data.id);
-            })
-            .catch(error => {
-                console.error(error);
-            });
+                .then(function (r) {
+                    console.log('Result saved with ID:', r.data.id);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
         }
 
     };
@@ -89,14 +89,14 @@ let init = (app) => {
 
     app.init = () => {
         axios.get('/getImages')
-        .then(function(r) {
-            app.vue.urls = r.data.urls;
-            app.vue.hasDrawing = r.data.urls.length > 0; //check if there is drawings in the database
-            console.log(app.vue.urls)
-        })
-        .catch(error => {
-            console.error(error);
-        });
+            .then(function (r) {
+                app.vue.urls = r.data.urls;
+                app.vue.hasDrawing = r.data.urls.length > 0; //check if there is drawings in the database
+                console.log(app.vue.urls)
+            })
+            .catch(error => {
+                console.error(error);
+            });
     };
 
     app.init();

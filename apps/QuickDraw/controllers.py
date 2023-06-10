@@ -29,9 +29,6 @@ def resultPage():
 @action('/index')
 @action.uses('index.html', db,  auth.user)
 def index():
-    # randid = random.randrange(1, 20)
-    # rows = db(db.words.id == randid).select()
-    # return dict(rows=rows)
     user_email = get_user_email()
     if user_email != auth.current_user.get('email'): #check if email matches with current logged in user
         redirect("https://http.cat/403")
@@ -42,13 +39,6 @@ def index():
 @action("wordGuess", method=["GET", "POST"])
 @action.uses('wordGuess.html',db,  auth.user )
 def words():
-    # if request.method == "POST":
-    #     guessed_word = request.forms.get("guess").lower() 
-    #     correct_word = "apple"  
-        
-    #     if guessed_word == correct_word:
-    #         redirect(URL('/index'))
-
     user_email = get_user_email()
     if user_email != auth.current_user.get('email'): #check if email matches with current logged in user
         redirect("https://http.cat/403")
