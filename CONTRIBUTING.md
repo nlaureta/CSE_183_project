@@ -27,7 +27,7 @@ Please follow these steps to have your contribution considered by the maintainer
 
 If you have any questions, please feel free to contact any of the maintainers directly. Here are the primary contacts for QuickDraw:
 
-- nlaureta@ucs.edu
+- nlaureta@ucsc.edu
 - jsaldivi@ucsc.edu
 - devo@ucsc.edu
 - mkim224@ucsc.edu
